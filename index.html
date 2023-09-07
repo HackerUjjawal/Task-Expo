@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Task Expo - The smart to-do app for busy people.</title>
+  <link rel="icon" type="image/x-icon" href="android-chrome-512x512.png">
+  <link rel="stylesheet" href="test.css" />
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  <script src="https://kit.fontawesome.com/66aa7c98b3.js" crossorigin="anonymous"></script>
+  <style>
+    #clock {
+    position: absolute;
+    top: 3px;
+    left: 10px;
+    font-size: 24px;
+    color: #fcfcfc; /* Set the color to white */
+    padding: 10px; /* Add some padding */
+    border-radius: 5px; /* Add rounded corners */
+  }
+  </style>
+</head>
+
+<body>
+  <div id="clock"></div>
+
+  <div class="content">
+    <h2><b>Task-Expo</b></h2>
+    <!-- <h2><b>Task Expo - The smart to-do app for busy people.</b></h2> -->
+  </div>
+  <audio id="deleteSound" src="Sound2.mp3"></audio>
+  <div class="wrapper">
+    <div class="task-input">
+      <img src="bars-icon.svg" alt="icon" />
+      <input type="text" placeholder="Add a new task" />
+    </div>
+    <div class="search-bar-container active">
+      <img src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/magnifier-512.png" alt="magnifier"
+        class="magnifier" />
+      <input type="text" class="input" id="myinput" placeholder="Search Your Task" onkeyup="search()">
+      <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-25-512.png" alt="mic-icon"
+        class="mic-icon" id="mic-icon" onclick="startVoiceSearch()" />
+    </div>
+    <div class="controls">
+      <div class="filters">
+        <span class="active" id="all">All</span>
+        <span id="pending">Pending</span>
+        <span id="completed">Completed</span>
+        <span id="ByDate" onclick="sortByDate()">ByDate</span>
+      </div>
+      <button class="clear-btn">Clear All</button>
+    </div>
+    <ul class="task-box"></ul>
+  </div>
+
+  <script>
+    function updateClock() {
+      var now = new Date();
+      var time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      var date = now.toDateString();
+
+      var clockElement = document.getElementById('clock');
+      clockElement.innerHTML = time + ' ' + date;
+
+      // Update the clock every second
+      setTimeout(updateClock, 1000);
+    }
+
+    // Call the updateClock function to start displaying the clock
+    updateClock();
+
+    const searchBarContainerEl = document.querySelector(".search-bar-container");
+    const magnifierEl = document.querySelector(".magnifier");
+
+    magnifierEl.addEventListener("click", () => {
+      searchBarContainerEl.classList.toggle("active");
+    });
+  </script>
+  <script src="test.js"></script>
+</body>
+
+</html>
